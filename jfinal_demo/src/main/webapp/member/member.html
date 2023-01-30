@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>成员管理系统</title>
+    <style>
+        .main{
+            border: 1px solid red;
+            width: 600px;
+            height: 600px;
+            margin: 50px auto;
+        }
+        .table{
+            border: 1px solid #444;
+            width: 100%;
+        }
+        td{
+            text-align:center
+        }
+    </style>
+</head>
+<body>
+<h1>成员管理系统</h1>
+当前成员的数量：#(members?members.size():"0")个
+<div class="main">
+    <a href="/member/add" target="_blank">添加成员</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>Id</th>
+                <th>名字</th>
+                <th>年龄</th>
+                <th>小组</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            #for(member:members)
+                <tr>
+                    <td>#(for.index)</td>
+                    <td>#(member.id)</td>
+                    <td>#(member.name)</td>
+                    <td>#(member.age)</td>
+                    <td>#(member.type)</td>
+                    <td>
+                        <a href="/member/del/#(member.id)" target="_blank">删除</a>
+                        <a href="/member/edit/#(member.id)" target="_blank">修改</a>
+                    </td>
+                </tr>
+            #end
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
